@@ -1,3 +1,10 @@
-title: "m0stima"
+title: x64 asm exercises
 markdown: kramdown
 highlighter: rouge
+
+defaults:
+  - scope:
+      path: ""    
+      type: "pages"
+    values:
+      layout: "default"
