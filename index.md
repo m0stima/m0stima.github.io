@@ -4,7 +4,7 @@ title: x64 asm exercises
 ---
 
 ### About me:
-Threat Hunting ; DFIR ; Security enthusiasm ; x.com/_m0stima_
+Threat Hunting ; DFIR ; Security freak ; x.com/\_m0stima_
 
 # References
 ```
