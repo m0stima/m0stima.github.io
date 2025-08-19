@@ -1,4 +1,5 @@
 ---
+layout: default
 title: x64 asm exercises
 ---
 
