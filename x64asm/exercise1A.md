@@ -44,7 +44,7 @@ main:                                       ; Entry point
     jmp     .loop                           ; Repeat loop
 
 .done:                                      ; Loop exit
-    mov     [rel res_sum], rax              ; Store finel sum into res_sum
+    mov     [rel res_sum], rax              ; Store final sum into res_sum
 
     xor     ecx, ecx                        ; RCX = 0 (ExitProcess exit code)
     call    ExitProcess                     ; ExitProcess(0)
