@@ -5,47 +5,44 @@ title: x64 asm ; exercise 1A ; MOV/LEA and addressing over a byte array
 ```nasm
 ; addressing_sum.asm - Exercise 1A: MOV/LEA and addressing over a byte array
 
-default rel                                 ; In x64 use RIP-relative addressing by default (safer/portable)
-extern ExitProcess                          ; Declare ExitProcess to exit the process cleanly
+default rel                             ; Use RIP-relative addressing where it applies
+extern ExitProcess                      ; Import ExitProcess from Kernel32
 
-section .data                               ; Initialized data section
-    arr         db 1,2,3,4,5                ; Small array of 5 bytes with values 1..5
-    arr_len     equ $-arr                   ; Compile-time length of arr (current location minus start of arr)
-    res_sum     dq 0                        ; 8-byte variable to store the final sum
-    addr_arr    dq 0                        ; Will hold the base address of arr
-    addr_arr3   dq 0                        ; Will hold the address of arr+3 (4th element)
+section .data                           ; Data to inspect after running
+    arr         db 1,2,3,4,5            ; Byte array used as input
+    arr_len     equ $ - arr             ; Compile-time length of the array
+    res_sum     dq 0                    ; Storage for the final 64-bit sum
+    addr_arr    dq 0                    ; Storage for the base address of arr
+    addr_arr3   dq 0                    ; Storage for the address of arr+3
 
-section .text                               ; Code section
-global main                                 ; Export 'main' for the linker
-main:                                       ; Entry point
+section .text
+global main                             ; Exported program entry point
+main:                                   ; Custom entry (no CRT is used)
 
-    sub     rsp, 28h                        ; Reserve 0x28 bytes on stack:
-                                            ;   - 0x20 (32) bytes shadow space required by Win64 ABI
-                                            ;   - 0x8 (8) bytes to keep RSP 16-byte aligned before calls
+    sub     rsp, 28h                    ; Reserve 40 bytes: 32 for shadow space + 8 to keep 16-byte alignment
 
-    lea     rax, [rel arr]                  ; RAX = address of arr (Load Effective Address)
-    mov     [rel addr_arr], rax             ; Store base address of arr into addr_arr
+    lea     rax, [rel arr]              ; RAX = address of arr
+    mov     [addr_arr], rax             ; Save base address of arr into addr_arr
 
-    lea     rbx, [rel arr + 3]              ; RBX = address of 4th element (offset + 3 bytes)
-    mov     [rel addr_arr3], rbx            ; Store arr+3 address into addr_arr3
+    lea     rbx, [rax + 3]              ; RBX = address of arr+3 using RAX as base
+    mov     [addr_arr3], rbx            ; Save address of arr+3 into addr_arr3
 
-    mov     rsi, rax                        ; RSI = base pointer to arr
-    xor     rax, rax                        ; RAX = 0 (accumulator for the sum)
-    xor     rcx, rcx                        ; RCX = 0 (loop index i = 0)
+    mov     rsi, rax                    ; RSI = base pointer to arr for indexed loads
+    xor     rax, rax                    ; RAX = 0 (sum accumulator)
+    xor     rcx, rcx                    ; RCX = 0 (loop index i)
 
-.loop:                                      ; Loop label
-    cmp     ecx, arr_len                    ; Compare i (ECX) with arr length
-    jae     .done                           ; If i > arr_len (unsigned), exit loop
+.loop:                                  ; Start of the loop
+    cmp     ecx, arr_len                ; Compare i with the array length (unsigned)
+    jae     .done                       ; If i >= arr_len, exit the loop
 
-    movzx   rdx, byte [rsi + rcx]           ; RDX = zero-extended byte arr[i] (base in RSI + index RCX)
-                                            ; (use movsx instead to sign-extend if needed)
-    add     rax, rdx                        ; sum += arr[i]
-    inc     rcx                             ; i++
-    jmp     .loop                           ; Repeat loop
+    movzx   rdx, byte [rsi + rcx]       ; RDX = zero-extended arr[i] (load one byte)
+    add     rax, rdx                    ; sum += arr[i]
+    inc     rcx                         ; i = i + 1
+    jmp     .loop                       ; Repeat the loop
 
-.done:                                      ; Loop exit
-    mov     [rel res_sum], rax              ; Store final sum into res_sum
+.done:                                  ; End of the loop
+    mov     [res_sum], rax              ; Store the final sum in res_sum
 
-    xor     ecx, ecx                        ; RCX = 0 (ExitProcess exit code)
-    call    ExitProcess                     ; ExitProcess(0)
+    xor     ecx, ecx                    ; RCX = process exit code (0)
+    call    ExitProcess                 ; Terminate the process
 ```
