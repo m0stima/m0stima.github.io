@@ -30,4 +30,4 @@ link /nologo /entry:main /subsystem:console <file_name>.obj /debug /defaultlib:k
 ```
 
 ### About me:
-Threat Hunting ; DFIR ; Security freak ; x.com/\_m0stima_
+Threat Hunting ; DFIR ; Security freak ; Husband & Father (LAAA) ; x.com/\_m0stima_
