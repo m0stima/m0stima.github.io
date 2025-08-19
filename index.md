@@ -2,6 +2,9 @@
 title: x64 asm exercises
 ---
 
+### About me:
+Threat Hunting ; DFIR ; Security enthusiasm ; x.com/_m0stima_
+
 # References
 ```
 https://www.felixcloutier.com/x86/
