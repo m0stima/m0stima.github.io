@@ -12,9 +12,11 @@ https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions?view=msvc-1
 
 # Basic commands
 ```cmd
-nasm -f win64 addressing_sum.asm -o addressing_sum.obj
-link /nologo /entry:main /subsystem:console addressing_sum.obj /defaultlib:kernel32.lib /libpath:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\x64"
-link /nologo /entry:main /subsystem:console addressing_sum.obj /debug /defaultlib:kernel32.lib /libpath:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\x64"
+-- Developer Command Prompt for VS 2022 --
+
+nasm -f win64 <file_name>.asm -o <file_name>.obj
+link /nologo /entry:main /subsystem:console <file_name>.obj /defaultlib:kernel32.lib /libpath:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\x64"
+link /nologo /entry:main /subsystem:console <file_name>.obj /debug /defaultlib:kernel32.lib /libpath:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\x64"
 ```
 
 # x64 asm exercises
