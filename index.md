@@ -4,8 +4,13 @@ title: x64 asm exercises
 
 # x64 asm exercises
 
-### About me:
-Threat Hunting ; DFIR ; Security freak ; x.com/\_m0stima_
+<ul>
+{% for p in site.pages %}
+  {% if p.path contains 'x64asm/' and p.name != 'index.md' %}
+    <li><a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
 
 # References
 ```
@@ -24,12 +29,5 @@ link /nologo /entry:main /subsystem:console <file_name>.obj /defaultlib:kernel32
 link /nologo /entry:main /subsystem:console <file_name>.obj /debug /defaultlib:kernel32.lib /libpath:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\x64"
 ```
 
-# x64 asm exercises
-
-<ul>
-{% for p in site.pages %}
-  {% if p.path contains 'x64asm/' and p.name != 'index.md' %}
-    <li><a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
-  {% endif %}
-{% endfor %}
-</ul>
+### About me:
+Threat Hunting ; DFIR ; Security freak ; x.com/\_m0stima_
