@@ -1,35 +1,3 @@
 title: "m0stima"
-description: "x64 asm exercises"
-url: "https://m0stima.github.io"   # ajusta si usas custom domain
-baseurl: ""                        # vacío para repos tipo usuario
-
-# Usa Minimal Mistakes por remote_theme
-remote_theme: "mmistakes/minimal-mistakes@4.26.0"
-
-# Plugins (necesario para este tema)
-plugins:
-  - jekyll-include-cache
-  - jekyll-seo-tag
-
-# Perfil (aparece en la barra lateral si lo activamos en la página)
-author:
-  name: "m0stima"
-  bio: "x64 asm ; Threat Hunting ; DFIR"
-  # si tienes un avatar, súbelo a /assets/images/avatar.jpg y descomenta ↓
-  # avatar: "/assets/images/avatar.jpg"
-  links:
-    - label: "X"
-      icon: "fab fa-x-twitter"   # si no sale, usa "fab fa-twitter"
-      url: "https://x.com/_m0stima_"
-
-# Por defecto, activamos perfil + barra lateral con el menú "site"
-defaults:
-  - scope:
-      path: ""          # aplica a todo el sitio (ajústalo si quieres)
-    values:
-      author_profile: true
-      sidebar:
-        nav: "site"
-
 markdown: kramdown
 highlighter: rouge
