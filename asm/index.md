@@ -1,5 +1,5 @@
 ---
-title: ASM Snippets
+title: x64 asm
 ---
 
 # ASM Snippets
