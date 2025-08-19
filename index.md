@@ -13,12 +13,11 @@ title: x64 asm exercises
 </ul>
 
 # References
-```
-https://www.felixcloutier.com/x86/
-https://cburch.com/csbsju/cs/350/docs/nasm/nasmdoc0.html
-https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170
-https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions?view=msvc-170
-```
+
+- https://www.felixcloutier.com/x86/
+- https://cburch.com/csbsju/cs/350/docs/nasm/nasmdoc0.html
+- https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170
+- https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions?view=msvc-170
 
 # Basic commands
 ```cmd
