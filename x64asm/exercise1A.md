@@ -1,5 +1,5 @@
 ---
-title: x64 asm ; Exercise 1A ; MOV/LEA and addressing over a byte array
+title: x64 asm ; exercise 1A ; MOV/LEA and addressing over a byte array
 ---
 
 ```nasm
