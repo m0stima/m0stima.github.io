@@ -27,6 +27,7 @@ main:                                       ; Custom entry (no CRT is used)
     cmp     eax, edx                        ; Set flags based on (a - b)
     jge     .keep_a                         ; If a >= b (signed), keep EAX as a
     mov     eax, edx                        ; Otherwise, EAX = b
+
 .keep_a:
     mov     [res_jmp], eax                  ; Store selected value in res_jmp
 
