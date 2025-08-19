@@ -1,0 +1,59 @@
+<style>
+.code-tabs { border: 1px solid #e5e7eb; border-radius: 8px; margin: 1rem 0; overflow: hidden; }
+.code-tabs .tabs { display: flex; gap: .25rem; padding: .5rem; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
+.code-tabs .tabs button { border: 1px solid transparent; background: transparent; padding: .4rem .6rem; cursor: pointer; border-radius: 6px; }
+.code-tabs .tabs button.active { background: #fff; border-color: #e5e7eb; }
+.code-tabs .highlight, .code-tabs pre { margin: 0; }
+
+/* Oculta comentarios de Rouge (c, c1, cm, cs) cuando está en modo "sin comentarios" */
+.code-tabs.no-comments .highlight .c,
+.code-tabs.no-comments .highlight .c1,
+.code-tabs.no-comments .highlight .cm,
+.code-tabs.no-comments .highlight .cs { display: none; }
+</style>
+
+<script>
+(function() {
+  // Aplica a ensamblador: nasm/asm/gas/masm
+  const SELECTOR = '.language-nasm, .language-asm, .language-gas, .language-masm';
+
+  function makeTabs(container) {
+    if (container.dataset.tabsified === '1') return;
+    const highlight = container.querySelector('.highlight');
+    if (!highlight) return;
+
+    // Envolver en .code-tabs
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-tabs no-comments';
+    container.parentNode.insertBefore(wrapper, container);
+    wrapper.appendChild(container);
+
+    // Pestañas
+    const nav = document.createElement('div');
+    nav.className = 'tabs';
+    const btnClean = document.createElement('button');
+    btnClean.type = 'button';
+    btnClean.textContent = 'Sin comentarios';
+    const btnComment = document.createElement('button');
+    btnComment.type = 'button';
+    btnComment.textContent = 'Comentado';
+    nav.append(btnClean, btnComment);
+    wrapper.insertBefore(nav, container);
+
+    function setMode(clean) {
+      wrapper.classList.toggle('no-comments', clean);
+      btnClean.classList.toggle('active', clean);
+      btnComment.classList.toggle('active', !clean);
+    }
+    btnClean.addEventListener('click', () => setMode(true));
+    btnComment.addEventListener('click', () => setMode(false));
+    setMode(true); // por defecto: sin comentarios
+
+    container.dataset.tabsified = '1';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll(SELECTOR).forEach(makeTabs);
+  });
+})();
+</script>
