@@ -3,7 +3,7 @@ title: x64 asm ; exercise 1A ; MOV/LEA and addressing over a byte array
 ---
 
 ```nasm
-; addressing_sum.asm - Exercise 1A: MOV/LEA and addressing over a byte array
+; addressing_sum.asm - exercise 1A: MOV/LEA and addressing over a byte array
 
 default rel                             ; Use RIP-relative addressing where it applies
 extern ExitProcess                      ; Import ExitProcess from Kernel32
